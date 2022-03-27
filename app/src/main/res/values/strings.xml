@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">QR Barcode Scanner</string>
+    <string name="reset">Scan again</string>
+    <string name="hint_press_back">Press Back again to exit</string>
+    <string name="all_formats">All formats</string>
+    <string name="mode">Scanning mode</string>
+    <string name="qr_code">QR code</string>
+    <string name="ean13">EAN13</string>
+    <string name="scanning">Scanning</string>
+    <string name="search">Web search</string>
+    <string name="share">Share value</string>
+    <string name="error_no_permission">No permission to Camera</string>
+    <string name="error_detector">Can\'t initialise detector, try to restart</string>
+    <string name="no_activity_error">Your system doesn\'t support web search</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="history">History</string>
+    <string name="no_data">No data</string>
+    <string name="code_type">Type</string>
+    <string name="event_date">Date</string>
+    <string name="rate_app_header">Rate application</string>
+    <string name="rate_app_text">Please, rate the app at PlayMarket</string>
+    <string name="rate_app_OK">Rate</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="hint_try_to_reset">Try to restart application</string>
+    <string name="stop_camera">Stop camera</string>
+    <string name="error_camera">Can\'t start a camera provider, please try to restart</string>
+
+</resources>

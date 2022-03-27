@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR сканер</string>
+    <string name="reset">Повторить сканирование</string>
+    <string name="hint_press_back">Нажмите еще раз для выхода</string>
+    <string name="all_formats">Все форматы</string>
+    <string name="mode">Режим сканирования</string>
+    <string name="qr_code">QR код</string>
+    <string name="ean13">EAN13</string>
+    <string name="scanning">Сканирование</string>
+    <string name="search">Искать в Интернете</string>
+    <string name="share">Отправить</string>
+    <string name="error_no_permission">Нет разрешения на использование камеры</string>
+    <string name="error_detector">Ошибка инициализации детектора, попробуйте перезагрузить приложение</string>
+    <string name="no_activity_error">Ваша система не поддерживает команду Веб-поиска</string>
+    <string name="navigation_drawer_open">Открыть меню</string>
+    <string name="navigation_drawer_close">Закрыть меню</string>
+    <string name="action_settings">Настройки</string>
+    <string name="history">История</string>
+    <string name="no_data">Нет данных</string>
+    <string name="code_type">Тип</string>
+    <string name="event_date">Дата</string>
+    <string name="rate_app_header">Оцените приложение</string>
+    <string name="rate_app_text">Пожалуйста, оставьте отзыв о приложении на Маркете</string>
+    <string name="rate_app_OK">Отзыв</string>
+    <string name="dialog_cancel">Нет</string>
+    <string name="hint_try_to_reset">Попробуйте перезапустить приложение</string>
+    <string name="stop_camera">Остановить сканирование</string>
+    <string name="error_camera">Не удалось запустить камеру, попробуйте перезагрузить приложение</string>
+</resources>
