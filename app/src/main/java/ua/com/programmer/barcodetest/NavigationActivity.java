@@ -69,8 +69,6 @@ public class NavigationActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_camera);
         attachFragment(CameraFragment.class);
 
-
-
         View headerView = navigationView.getHeaderView(0);
         TextView versionText = headerView.findViewById(R.id.version);
         if (versionText != null){
@@ -122,8 +120,6 @@ public class NavigationActivity extends AppCompatActivity
             attachFragment(CameraFragment.class);
         } else if (id == R.id.nav_history) {
             attachFragment(HistoryFragment.class);
-//        } else if (id == R.id.nav_settings) {
-//            attachFragment(SettingsFragment.class);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
