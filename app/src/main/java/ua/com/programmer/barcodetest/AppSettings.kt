@@ -7,7 +7,7 @@ import android.util.Log
 import java.lang.Exception
 import java.util.*
 
-internal class AppSettings(private val context: Context) {
+class AppSettings(private val context: Context) {
 
     private var sharedPreferences: SharedPreferences
 

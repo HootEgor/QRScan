@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.mlkit.vision.barcode.common.Barcode
 import java.util.*
 
-internal class Utils {
+class Utils {
 
     fun dateBeginShiftDate(): Long {
         val calendar: Calendar = GregorianCalendar()
