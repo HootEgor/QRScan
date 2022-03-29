@@ -9,7 +9,7 @@ import java.util.*
 
 class AppSettings(private val context: Context) {
 
-    private var sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences
 
     init {
         val tag = "ua.com.programmer.qrscanner.preference"
