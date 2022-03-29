@@ -1,66 +1,59 @@
-package ua.com.programmer.barcodetest;
+package ua.com.programmer.barcodetest
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.util.Log;
+import android.content.Context
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.util.Log
+import java.lang.Exception
+import java.util.*
 
-import java.util.Calendar;
-import java.util.UUID;
+internal class AppSettings(private val context: Context) {
 
-class AppSettings {
+    private var sharedPreferences: SharedPreferences
 
-    private static SharedPreferences sharedPreferences;
-    private final Context context;
-
-    AppSettings(Context context){
-        this.context = context;
-        final String PREF_NAME = "ua.com.programmer.qrscanner.preference";
-        sharedPreferences = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+    init {
+        val tag = "ua.com.programmer.qrscanner.preference"
+        sharedPreferences = context.getSharedPreferences(tag, Context.MODE_PRIVATE)
     }
 
-    int launchCounter(){
-        final String START_COUNTER = "APP_START_COUNTER";
-        int value = sharedPreferences.getInt(START_COUNTER,0);
-        value++;
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(START_COUNTER,value);
-        editor.apply();
-        return value;
+    fun launchCounter(): Int {
+        val counterTag = "APP_START_COUNTER"
+        var value = sharedPreferences.getInt(counterTag, 0)
+        value++
+        val editor = sharedPreferences.edit()
+        editor.putInt(counterTag, value)
+        editor.apply()
+        return value
     }
 
-    String userID(){
-        final String USER_ID = "USER_ID";
-        String userID = sharedPreferences.getString(USER_ID,null);
-
-        if (userID == null){
-            userID = UUID.randomUUID().toString();
-            long time = Calendar.getInstance().getTimeInMillis();
-            userID = userID+"-"+time;
-
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(USER_ID,userID);
-            editor.apply();
+    fun userID(): String {
+        val userIdTag = "USER_ID"
+        var userID = sharedPreferences.getString(userIdTag, null)
+        if (userID == null) {
+            userID = UUID.randomUUID().toString()
+            val time = Calendar.getInstance().timeInMillis
+            userID = "$userID-$time"
+            val editor = sharedPreferences.edit()
+            editor.putString(userIdTag, userID)
+            editor.apply()
         }
-
-        return userID;
+        return userID
     }
 
-    String versionName(){
-        return BuildConfig.VERSION_NAME;
+    fun versionName(): String {
+        return BuildConfig.VERSION_NAME
     }
 
-    String firestorePassword(){
+    fun firestorePassword(): String? {
         try {
-            ApplicationInfo applicationInfo = context.getPackageManager()
-                    .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-            Bundle bundle = applicationInfo.metaData;
-            return bundle.getString("ua.com.programmer.qrscanner.default_user_pass");
-        }catch (Exception e){
-            Log.e("XBUG","meta-data: "+e.toString());
+            val applicationInfo = context.packageManager
+                .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
+            val bundle = applicationInfo.metaData
+            return bundle.getString("ua.com.programmer.qrscanner.default_user_pass")
+        } catch (e: Exception) {
+            Log.e("XBUG", "meta-data: $e")
         }
-        return null;
+        return null
     }
+
 }
