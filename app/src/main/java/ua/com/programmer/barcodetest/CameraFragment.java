@@ -35,6 +35,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -182,7 +183,7 @@ public class CameraFragment extends Fragment implements Executor{
 
                 try{
                     provider.unbindAll();
-                    provider.bindToLifecycle(this, cameraSelector, imageAnalysis, preview);
+                    provider.bindToLifecycle(getViewLifecycleOwner(), cameraSelector, imageAnalysis, preview);
                 }catch (Exception e){
                     utils.debug("bind provider error; "+e.getMessage());
                 }
@@ -249,18 +250,22 @@ public class CameraFragment extends Fragment implements Executor{
 
     }
 
+    // action called onn reset button
     private void resetScanner(){
+        utils.debug("resetting scanner");
         flagSaved = false;
         barcodeValue = "";
         barcodeFormat = "";
         saveState();
         try {
-            assert getFragmentManager() != null;
-            getFragmentManager().beginTransaction()
-                    .detach(this)
-                    .attach(this)
-                    .commit();
-        }catch (NullPointerException ex){
+            cameraProvider.get().unbindAll();
+//            assert getFragmentManager() != null;
+//            getFragmentManager().beginTransaction()
+//                    .detach(this)
+//                    .attach(this)
+//                    .commit();
+            setupCamera();
+        }catch (NullPointerException | ExecutionException | InterruptedException ex){
             Toast.makeText(mContext, R.string.hint_try_to_reset, Toast.LENGTH_SHORT).show();
         }
     }

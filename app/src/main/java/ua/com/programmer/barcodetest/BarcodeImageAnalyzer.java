@@ -9,7 +9,6 @@ import androidx.camera.core.ImageProxy;
 
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.common.InputImage;
 
@@ -20,10 +19,14 @@ public class BarcodeImageAnalyzer implements ImageAnalysis.Analyzer {
 
     public BarcodeImageAnalyzer(BarcodeFoundListener barcodeFoundListener){
         listener = barcodeFoundListener;
-        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
-                //.setBarcodeFormats(com.google.mlkit.vision.barcode.Barcode.FORMAT_EAN_13, com.google.mlkit.vision.barcode.Barcode.FORMAT_QR_CODE)
-                .build();
-        scanner = BarcodeScanning.getClient(options);
+//        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
+//                //.setBarcodeFormats(com.google.mlkit.vision.barcode.Barcode.FORMAT_EAN_13, com.google.mlkit.vision.barcode.Barcode.FORMAT_QR_CODE)
+////                .setZoomSuggestionOptions(
+////                        new ZoomSuggestionOptions.Builder(zoomCallback)
+////                                .setMaxSupportedZoomRatio(maxSupportedZoomRatio)
+////                                .build()) // Optional
+//                .build();
+        scanner = BarcodeScanning.getClient();
     }
 
     @Override
