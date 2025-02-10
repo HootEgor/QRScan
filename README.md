@@ -41,11 +41,11 @@ Make sure to grant the necessary permissions when prompted.
 
 ### Resetting the Scanner
 
-1. Tap the "Reset" button to reset the scanner and scan a new barcode.
+Tap the "Reset" button to reset the scanner and scan a new barcode.
 
 ## Broadcast Receiver
 
-The app broadcasts scanned barcode data using the action `ua.com.programmer.barcodetest.BARCODE_SCANNED`. Other applications can register a broadcast receiver to listen for this intent and handle the barcode data.
+The app broadcasts scanned barcode data using the action `ua.com.programmer.qrscanner.BARCODE_SCANNED`. Other applications can register a broadcast receiver to listen for this intent and handle the barcode data.
 
 ### Example Broadcast Receiver
 
