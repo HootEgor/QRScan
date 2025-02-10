@@ -85,7 +85,7 @@ class CameraFragment : Fragment() {
         buttonsVisibilityTrigger(false)
 
         val btShare: TextView = view.findViewById(R.id.button_share)
-        btShare.setOnClickListener { v: View? ->
+        btShare.setOnClickListener {
             if (barcodeValue != "") {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.putExtra(Intent.EXTRA_TEXT, barcodeValue)
