@@ -83,4 +83,4 @@ Contributions are welcome! Please read the CONTRIBUTING.md file for guidelines o
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out to the project maintainer at your.email@example.com.
+If you have any questions or feedback, feel free to reach out to the project maintainer at support@programmer.com.ua.
