@@ -1,6 +1,6 @@
-package ua.com.programmer.barcodetest;
+package ua.com.programmer.barcodetest
 
-public interface BarcodeFoundListener {
-    void onBarcodeFound(String barCode, int format);
-    void onCodeNotFound(String error);
+interface BarcodeFoundListener {
+    fun onBarcodeFound(barCode: String?, format: Int)
+    fun onCodeNotFound(error: String?)
 }

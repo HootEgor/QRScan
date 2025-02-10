@@ -1,65 +1,58 @@
-package ua.com.programmer.barcodetest;
+package ua.com.programmer.barcodetest
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.util.Log;
+import android.content.ContentValues
+import android.database.Cursor
+import android.util.Log
 
-public class CursorHelper {
+class CursorHelper internal constructor(cursor: Cursor) {
+    private val values: ContentValues
 
-    private final ContentValues values;
-
-    CursorHelper (Cursor cursor){
-        int i;
-        String[] columns = cursor.getColumnNames();
-        values = new ContentValues();
+    init {
+        var i: Int
+        val columns = cursor.columnNames
+        values = ContentValues()
         try {
-            for (String column : columns) {
-                i = cursor.getColumnIndex(column);
-                if (column.equals("_id")) values.put("raw_id", cursor.getLong(i));
-                else
-                    switch (cursor.getType(i)) {
-                        case Cursor.FIELD_TYPE_FLOAT:
-                            values.put(column, cursor.getDouble(i));
-                            break;
-                        case Cursor.FIELD_TYPE_INTEGER:
-                            values.put(column, cursor.getLong(i));
-                            break;
-                        default:
-                            values.put(column, cursor.getString(i));
-                    }
+            for (column in columns) {
+                i = cursor.getColumnIndex(column)
+                if (column == "_id") values.put("raw_id", cursor.getLong(i))
+                else when (cursor.getType(i)) {
+                    Cursor.FIELD_TYPE_FLOAT -> values.put(column, cursor.getDouble(i))
+                    Cursor.FIELD_TYPE_INTEGER -> values.put(column, cursor.getLong(i))
+                    else -> values.put(column, cursor.getString(i))
+                }
             }
-        }catch (Exception e){
-            Log.e("XBUG", "Cursor helper init: "+e);
+        } catch (e: Exception) {
+            Log.e("XBUG", "Cursor helper init: $e")
         }
     }
 
-    int getInt(String column) {
-        int value = 0;
+    fun getInt(column: String?): Int {
+        var value = 0
         if (column != null) {
-            if (values.containsKey(column) && values.get(column) != null){
-                if (!values.getAsString(column).isEmpty()) value = values.getAsInteger(column);
+            if (values.containsKey(column) && values[column] != null) {
+                if (values.getAsString(column).isNotEmpty()) value = values.getAsInteger(column)
             }
         }
-        return value;
+        return value
     }
 
-    long getLong(String column) {
-        long value = 0;
+    fun getLong(column: String?): Long {
+        var value: Long = 0
         if (column != null) {
-            if (values.containsKey(column) && values.get(column) != null){
-                if (!values.getAsString(column).isEmpty()) value = values.getAsLong(column);
+            if (values.containsKey(column) && values[column] != null) {
+                if (values.getAsString(column).isNotEmpty()) value = values.getAsLong(column)
             }
         }
-        return value;
+        return value
     }
 
-    String getString(String column) {
-        String value = "";
+    fun getString(column: String?): String {
+        var value = ""
         if (column != null) {
-            if (values.containsKey(column) && values.get(column) != null){
-                value = values.getAsString(column);
+            if (values.containsKey(column) && values[column] != null) {
+                value = values.getAsString(column)
             }
         }
-        return value;
+        return value
     }
 }

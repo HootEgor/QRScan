@@ -1,52 +1,35 @@
-package ua.com.programmer.barcodetest;
+package ua.com.programmer.barcodetest
 
-import android.annotation.SuppressLint;
-import android.media.Image;
+import android.annotation.SuppressLint
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageProxy
+import com.google.mlkit.vision.barcode.BarcodeScanning
+import com.google.mlkit.vision.barcode.common.Barcode
+import com.google.mlkit.vision.common.InputImage
 
-import androidx.annotation.NonNull;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageProxy;
+class BarcodeImageAnalyzer(private val listener: BarcodeFoundListener) : ImageAnalysis.Analyzer {
 
-import com.google.mlkit.vision.barcode.common.Barcode;
-import com.google.mlkit.vision.barcode.BarcodeScanner;
-import com.google.mlkit.vision.barcode.BarcodeScanning;
-import com.google.mlkit.vision.common.InputImage;
+    private val scanner = BarcodeScanning.getClient()
 
-public class BarcodeImageAnalyzer implements ImageAnalysis.Analyzer {
-
-    private final BarcodeFoundListener listener;
-    private final BarcodeScanner scanner;
-
-    public BarcodeImageAnalyzer(BarcodeFoundListener barcodeFoundListener){
-        listener = barcodeFoundListener;
-//        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
-//                //.setBarcodeFormats(com.google.mlkit.vision.barcode.Barcode.FORMAT_EAN_13, com.google.mlkit.vision.barcode.Barcode.FORMAT_QR_CODE)
-////                .setZoomSuggestionOptions(
-////                        new ZoomSuggestionOptions.Builder(zoomCallback)
-////                                .setMaxSupportedZoomRatio(maxSupportedZoomRatio)
-////                                .build()) // Optional
-//                .build();
-        scanner = BarcodeScanning.getClient();
-    }
-
-    @Override
-    public void analyze(@NonNull ImageProxy imageProxy) {
-        @SuppressLint({"UnsafeExperimentalUsageError", "UnsafeOptInUsageError"}) Image mediaImage = imageProxy.getImage();
+    override fun analyze(imageProxy: ImageProxy) {
+        @SuppressLint("UnsafeExperimentalUsageError", "UnsafeOptInUsageError") val mediaImage =
+            imageProxy.image
         if (mediaImage != null) {
-            InputImage inputImage = InputImage.fromMediaImage(mediaImage, imageProxy.getImageInfo().getRotationDegrees());
+            val inputImage =
+                InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
             scanner.process(inputImage)
-                    .addOnSuccessListener(barcodes -> {
-                        for (Barcode barcode : barcodes) {
-                            listener.onBarcodeFound(barcode.getRawValue(),barcode.getFormat());
-                        }
-                    })
-                    .addOnFailureListener(e -> listener.onCodeNotFound(e.getMessage()))
-                    .addOnCompleteListener(task -> {
-                        imageProxy.close();
-                        mediaImage.close();
-                    });
-        }else {
-            imageProxy.close();
+                .addOnSuccessListener { barcodes: List<Barcode> ->
+                    for (barcode in barcodes) {
+                        listener.onBarcodeFound(barcode.rawValue, barcode.format)
+                    }
+                }
+                .addOnFailureListener { e: Exception -> listener.onCodeNotFound(e.message) }
+                .addOnCompleteListener {
+                    imageProxy.close()
+                    mediaImage.close()
+                }
+        } else {
+            imageProxy.close()
         }
     }
 }
