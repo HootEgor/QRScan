@@ -1,6 +1,6 @@
 # Barcode Scanner App
 
-This is a Barcode Scanner application for Android, developed using Kotlin and Java. The app uses the CameraX library to scan barcodes and provides various functionalities such as sharing, searching, and saving scanned barcodes.
+This is a Barcode Scanner application for Android, developed using Kotlin. The app uses the CameraX and Google ML Kit libraries to scan barcodes and provides various functionalities such as sharing, searching, and saving scanned barcodes.
 
 ## Features
 
@@ -54,7 +54,7 @@ To listen for the broadcast barcode data, you can create a `BroadcastReceiver` i
    ```kotlin
    class BarcodeReceiver : BroadcastReceiver() {
        override fun onReceive(context: Context, intent: Intent) {
-           if (intent.action == "ua.com.programmer.barcodetest.BARCODE_SCANNED") {
+           if (intent.action == "ua.com.programmer.qrscanner.BARCODE_SCANNED") {
                val barcodeValue = intent.getStringExtra("BARCODE_VALUE")
                val barcodeFormat = intent.getStringExtra("BARCODE_FORMAT")
                // Handle the received barcode data
@@ -68,7 +68,7 @@ To register the BroadcastReceiver in your AndroidManifest.xml, add the following
    ```xml
    <receiver android:name=".BarcodeReceiver">
        <intent-filter>
-           <action android:name="ua.com.programmer.barcodetest.BARCODE_SCANNED" />
+           <action android:name="ua.com.programmer.qrscanner.BARCODE_SCANNED" />
        </intent-filter>
    </receiver>
    ```
