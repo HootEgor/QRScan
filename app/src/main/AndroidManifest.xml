@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -21,10 +24,6 @@
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="barcode" />
-        <!-- To use multiple models: android:value="barcode,model2,model3" -->
-        <meta-data
-            android:name="ua.com.programmer.qrscanner.default_user_pass"
-            android:value="fw6yZ4K8Y33aDS" />
     </application>
 
 </manifest>
