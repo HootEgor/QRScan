@@ -199,33 +199,31 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
         if (user == null) {
-            val pass = appSettings!!.firestorePassword()
-            if (pass != null) {
-                firebaseAuth.signInWithEmailAndPassword("support@programmer.com.ua", pass)
-                    .addOnCompleteListener(
-                        this
-                    ) { task: Task<AuthResult?> ->
-                        if (task.isSuccessful) {
-                            userInfo()
-                        }
+            firebaseAuth.signInWithEmailAndPassword(BuildConfig.FUREBASE_USER, BuildConfig.FIREBASE_USER_PASS)
+                .addOnCompleteListener(
+                    this
+                ) { task: Task<AuthResult?> ->
+                    if (task.isSuccessful) {
+                        userInfo()
                     }
-            }
+                }
         } else {
             userInfo()
         }
     }
 
     private fun userInfo() {
-        val document: MutableMap<String, Any> = HashMap()
-        document["loginTime"] = Date()
-        document["userID"] = appSettings!!.userID()
-        document["appVersion"] = appSettings!!.versionName()
-        document["launchCounter"] = appSettings!!.launchCounter()
-
-        val firestore = FirebaseFirestore.getInstance()
-        firestore.collection("users")
-            .document(appSettings!!.userID())
-            .set(document)
+        appSettings?.let {
+            val firestore = FirebaseFirestore.getInstance()
+            val document = HashMap<String, Any>()
+            document["loginTime"] = Date()
+            document["userID"] = it.userID()
+            document["appVersion"] = it.versionName()
+            document["launchCounter"] = it.launchCounter()
+            firestore.collection("users")
+                .document(it.userID())
+                .set(document)
+        }
     }
 
     companion object {

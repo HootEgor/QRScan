@@ -98,7 +98,7 @@ class CameraFragment : Fragment() {
         btSearch.setOnClickListener { v: View? ->
             if (barcodeValue != "") {
                 try {
-                    val intent: Intent = Intent(Intent.ACTION_WEB_SEARCH)
+                    val intent = Intent(Intent.ACTION_WEB_SEARCH)
                     intent.putExtra(SearchManager.QUERY, barcodeValue)
                     startActivity(intent)
                 } catch (noActivity: ActivityNotFoundException) {
@@ -207,7 +207,7 @@ class CameraFragment : Fragment() {
         buttonsVisibilityTrigger(true)
 
         // Send broadcast intent with barcode data
-        val intent = Intent("ua.com.programmer.barcodetest.BARCODE_SCANNED")
+        val intent = Intent("ua.com.programmer.qrscanner.BARCODE_SCANNED")
         intent.putExtra("BARCODE_VALUE", barcodeValue)
         intent.putExtra("BARCODE_FORMAT", barcodeFormat)
         requireContext().sendBroadcast(intent)
