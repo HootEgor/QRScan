@@ -77,10 +77,6 @@ To register the BroadcastReceiver in your AndroidManifest.xml, add the following
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Contributing
-
-Contributions are welcome! Please read the CONTRIBUTING.md file for guidelines on how to contribute to this project.
-
 ## Contact
 
 If you have any questions or feedback, feel free to reach out to the project maintainer at support@programmer.com.ua.
