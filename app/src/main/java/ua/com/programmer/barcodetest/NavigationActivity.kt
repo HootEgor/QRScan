@@ -199,7 +199,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
         if (user == null) {
-            firebaseAuth.signInWithEmailAndPassword(BuildConfig.FUREBASE_USER, BuildConfig.FIREBASE_USER_PASS)
+            firebaseAuth.signInWithEmailAndPassword(BuildConfig.FIREBASE_USER, BuildConfig.FIREBASE_USER_PASS)
                 .addOnCompleteListener(
                     this
                 ) { task: Task<AuthResult?> ->
