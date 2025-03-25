@@ -1,4 +1,4 @@
-package ua.com.programmer.barcodetest
+package energy.h2plt.qrscan
 
 import android.Manifest
 import android.app.SearchManager
@@ -111,7 +111,7 @@ class CameraFragment : Fragment() {
         btReset.setOnClickListener { resetScanner() }
 
         sharedPreferences = requireContext().getSharedPreferences(
-            "ua.com.programmer.qrscanner.preference",
+            "energy.h2plt.qrscan.preference",
             Context.MODE_PRIVATE
         )
         barcodeValue = sharedPreferences.getString("BARCODE", "") ?: ""
@@ -207,7 +207,7 @@ class CameraFragment : Fragment() {
         buttonsVisibilityTrigger(true)
 
         // Send broadcast intent with barcode data
-        val intent = Intent("ua.com.programmer.qrscanner.BARCODE_SCANNED")
+        val intent = Intent("energy.h2plt.qrscan.BARCODE_SCANNED")
         intent.putExtra("BARCODE_VALUE", barcodeValue)
         intent.putExtra("BARCODE_FORMAT", barcodeFormat)
         requireContext().sendBroadcast(intent)

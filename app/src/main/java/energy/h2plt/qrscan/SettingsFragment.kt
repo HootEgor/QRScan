@@ -1,4 +1,4 @@
-package ua.com.programmer.barcodetest
+package energy.h2plt.qrscan
 
 import android.os.Bundle
 import android.view.LayoutInflater

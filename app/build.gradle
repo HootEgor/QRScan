@@ -5,7 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.dagger.hilt.android'
-    id 'com.google.gms.google-services'
+//    id 'com.google.gms.google-services'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
@@ -28,7 +28,7 @@ android {
     def _versionName = "3." + _patch
 
     defaultConfig {
-        applicationId "ua.com.programmer.qrscanner"
+        applicationId "energy.h2plt.qrscan"
         minSdkVersion 23
         targetSdkVersion 35
         versionCode _patch
@@ -55,7 +55,7 @@ android {
     buildFeatures {
         buildConfig = true
     }
-    namespace 'ua.com.programmer.barcodetest'
+    namespace 'energy.h2plt.qrscan'
 }
 
 dependencies {
@@ -79,10 +79,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:33.9.0')
-    //implementation 'com.google.firebase:firebase-core'
-    implementation 'com.google.firebase:firebase-firestore'
-    implementation 'com.google.firebase:firebase-auth'
+//    implementation platform('com.google.firebase:firebase-bom:33.9.0')
+//    //implementation 'com.google.firebase:firebase-core'
+//    implementation 'com.google.firebase:firebase-firestore'
+//    implementation 'com.google.firebase:firebase-auth'
 
     // Hilt
     implementation "com.google.dagger:hilt-android:2.54"

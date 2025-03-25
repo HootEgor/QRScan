@@ -1,4 +1,4 @@
-package ua.com.programmer.barcodetest
+package energy.h2plt.qrscan
 
 import android.util.Log
 import com.google.mlkit.vision.barcode.common.Barcode

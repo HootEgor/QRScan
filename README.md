@@ -45,7 +45,7 @@ Tap the "Reset" button to reset the scanner and scan a new barcode.
 
 ## Broadcast Receiver
 
-The app broadcasts scanned barcode data using the action `ua.com.programmer.qrscanner.BARCODE_SCANNED`. Other applications can register a broadcast receiver to listen for this intent and handle the barcode data.
+The app broadcasts scanned barcode data using the action `energy.h2plt.qrscan.BARCODE_SCANNED`. Other applications can register a broadcast receiver to listen for this intent and handle the barcode data.
 
 ### Example Broadcast Receiver
 
@@ -54,7 +54,7 @@ To listen for the broadcast barcode data, you can create a `BroadcastReceiver` i
    ```kotlin
    class BarcodeReceiver : BroadcastReceiver() {
        override fun onReceive(context: Context, intent: Intent) {
-           if (intent.action == "ua.com.programmer.qrscanner.BARCODE_SCANNED") {
+           if (intent.action == "energy.h2plt.qrscan.BARCODE_SCANNED") {
                val barcodeValue = intent.getStringExtra("BARCODE_VALUE")
                val barcodeFormat = intent.getStringExtra("BARCODE_FORMAT")
                // Handle the received barcode data
@@ -68,7 +68,7 @@ To register the BroadcastReceiver in your AndroidManifest.xml, add the following
    ```xml
    <receiver android:name=".BarcodeReceiver">
        <intent-filter>
-           <action android:name="ua.com.programmer.qrscanner.BARCODE_SCANNED" />
+           <action android:name="energy.h2plt.qrscan.BARCODE_SCANNED" />
        </intent-filter>
    </receiver>
    ```

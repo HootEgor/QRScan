@@ -1,4 +1,4 @@
-package ua.com.programmer.barcodetest
+package energy.h2plt.qrscan
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -19,9 +19,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+//import com.google.firebase.auth.AuthResult
+//import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Date
 
 class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -61,7 +61,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             versionText.text = version
         }
 
-        firebaseAuthentication()
+//        firebaseAuthentication()
     }
 
     @Deprecated("Deprecated in Java")
@@ -123,7 +123,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun onDestroy() {
         val sharedPreferences =
-            getSharedPreferences("ua.com.programmer.qrscanner.preference", MODE_PRIVATE)
+            getSharedPreferences("energy.h2plt.qrscan.preference", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("BARCODE", "")
         editor.putString("FORMAT", "")
@@ -137,7 +137,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             .setMessage(R.string.rate_app_text)
             .setPositiveButton(R.string.rate_app_OK) { _: DialogInterface?, _: Int ->
                 val sharedPreferences = getSharedPreferences(
-                    "ua.com.programmer.qrscanner.preference",
+                    "energy.h2plt.qrscan.preference",
                     MODE_PRIVATE
                 )
                 val editor = sharedPreferences.edit()
@@ -165,7 +165,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             .setNegativeButton(R.string.dialog_cancel) { dialogInterface: DialogInterface?, i: Int ->
                 //will ask to rate next time
                 val sharedPreferences = getSharedPreferences(
-                    "ua.com.programmer.qrscanner.preference",
+                    "energy.h2plt.qrscan.preference",
                     MODE_PRIVATE
                 )
                 val editor = sharedPreferences.edit()
@@ -195,36 +195,36 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         db.close()
     }
 
-    private fun firebaseAuthentication() {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val user = firebaseAuth.currentUser
-        if (user == null) {
-            firebaseAuth.signInWithEmailAndPassword(BuildConfig.FIREBASE_USER, BuildConfig.FIREBASE_USER_PASS)
-                .addOnCompleteListener(
-                    this
-                ) { task: Task<AuthResult?> ->
-                    if (task.isSuccessful) {
-                        userInfo()
-                    }
-                }
-        } else {
-            userInfo()
-        }
-    }
+//    private fun firebaseAuthentication() {
+//        val firebaseAuth = FirebaseAuth.getInstance()
+//        val user = firebaseAuth.currentUser
+//        if (user == null) {
+//            firebaseAuth.signInWithEmailAndPassword(BuildConfig.FIREBASE_USER, BuildConfig.FIREBASE_USER_PASS)
+//                .addOnCompleteListener(
+//                    this
+//                ) { task: Task<AuthResult?> ->
+//                    if (task.isSuccessful) {
+//                        userInfo()
+//                    }
+//                }
+//        } else {
+//            userInfo()
+//        }
+//    }
 
-    private fun userInfo() {
-        appSettings?.let {
-            val firestore = FirebaseFirestore.getInstance()
-            val document = HashMap<String, Any>()
-            document["loginTime"] = Date()
-            document["userID"] = it.userID()
-            document["appVersion"] = it.versionName()
-            document["launchCounter"] = it.launchCounter()
-            firestore.collection("users")
-                .document(it.userID())
-                .set(document)
-        }
-    }
+//    private fun userInfo() {
+//        appSettings?.let {
+//            val firestore = FirebaseFirestore.getInstance()
+//            val document = HashMap<String, Any>()
+//            document["loginTime"] = Date()
+//            document["userID"] = it.userID()
+//            document["appVersion"] = it.versionName()
+//            document["launchCounter"] = it.launchCounter()
+//            firestore.collection("users")
+//                .document(it.userID())
+//                .set(document)
+//        }
+//    }
 
     companion object {
         private const val START_COUNTER = "APP_START_COUNTER"

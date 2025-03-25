@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ua.com.programmer.barcodetest.HistoryFragment">
+    tools:context="energy.h2plt.qrscan.HistoryFragment">
 
      <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
